@@ -9,6 +9,15 @@ services:
     ports:
       - 9090:9090
 
+  node_exporter:
+    image: quay.io/prometheus/node-exporter:latest
+    command:
+      - '--path.rootfs=/host'
+    ports:
+      - 9100:9100
+    volumes:
+      - ./node-exporter:/host
+
   grafana:
     image: grafana/grafana:latest
     depends_on:
